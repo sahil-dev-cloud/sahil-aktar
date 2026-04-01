@@ -141,9 +141,17 @@ header.scrolled .menu-toggle {
     opacity: 0.85;
 }
 
-.menu a:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
+/* Hover apenas em dispositivos que suportam mouse */
+@media (hover: hover) {
+    .menu a:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+    }
+    
+    header.scrolled .menu a:hover {
+        background: rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+    }
 }
 
 .menu a.ativo {
@@ -162,6 +170,60 @@ header.scrolled .menu a.ativo {
     font-size: 1.4rem;
     cursor: pointer;
     transition: var(--transicao);
+}
+
+/* =========================
+   RESPONSIVIDADE DO MENU
+========================= */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu-principal {
+        flex-direction: row;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--branco);
+        position: absolute;
+        top: 75px;
+        left: 0;
+        padding: 1rem;
+        box-shadow: var(--sombra);
+        gap: 0.5rem;
+        z-index: 999;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu a {
+        color: var(--preto-suave);
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+    }
+
+    /* Remove hover em dispositivos móveis */
+    @media (hover: hover) {
+        .menu a:hover {
+            background: var(--cinza-claro);
+            transform: none;
+        }
+    }
+
+    .menu a.ativo {
+        background: var(--azul-profissional);
+        color: var(--branco);
+    }
 }
 
 /* =========================
@@ -272,6 +334,21 @@ header.scrolled .menu a.ativo {
     color: var(--branco);
 }
 
+@media (max-width: 480px) {
+    .hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .hero-stats .stat-number {
+        font-size: 2rem;
+    }
+    
+    .hero-stats .stat-label {
+        font-size: 0.85rem;
+    }
+}
+
 /* =========================
    BOTÕES
 ========================= */
@@ -338,6 +415,21 @@ header.scrolled .menu a.ativo {
     background: var(--verde-whatsapp-hover);
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+}
+
+@media (max-width: 768px) {
+    .btn-container,
+    .btn-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn,
+    .btn-group .btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
 }
 
 /* =========================
@@ -2010,7 +2102,7 @@ footer {
 }
 
 /* =========================
-   ANIMAÇÃO BASE
+   ANIMAÇÕES
 ========================= */
 @keyframes fadeInUp {
     from {
@@ -2023,8 +2115,41 @@ footer {
     }
 }
 
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
 /* =========================
-   RESPONSIVIDADE
+   RESPONSIVIDADE GLOBAL
 ========================= */
 @media (max-width: 1024px) {
     .sobre-grid,
@@ -2049,79 +2174,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .menu-principal {
-        flex-direction: row;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: var(--branco);
-        position: absolute;
-        top: 75px;
-        left: 0;
-        padding: 1rem;
-        box-shadow: var(--sombra);
-        gap: 0.5rem;
-    }
-
-    .menu.active {
-        display: flex;
-    }
-
-    .menu a {
-        color: var(--preto-suave);
-        width: 100%;
-        justify-content: flex-start;
-        padding: 0.8rem 1rem;
-        border-radius: 8px;
-    }
-
-    .menu a:hover {
-        background: var(--cinza-claro);
-    }
-
-    .menu a.ativo {
-        background: var(--azul-profissional);
-        color: var(--branco);
-    }
-
-    .hero-content {
-        padding: 1rem;
-    }
-
-    .hero-stats {
-        gap: 1.5rem;
-    }
-
-    .hero-stats .stat-number {
-        font-size: 2rem;
-    }
-
-    .hero-stats .stat-label {
-        font-size: 0.85rem;
-    }
-
-    .btn-container,
-    .btn-group {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .btn,
-    .btn-group .btn {
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
-    }
-
     section {
         padding: 3rem 1rem;
     }
@@ -2195,11 +2247,6 @@ footer {
     .contato-container > h2,
     .servicos-header h1 {
         font-size: 1.5rem;
-    }
-
-    .hero-stats {
-        flex-direction: column;
-        gap: 1rem;
     }
 
     .skills-card,

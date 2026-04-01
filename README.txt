@@ -46,6 +46,6 @@ com o objetivo de demonstrar domínio em HTML, CSS e JavaScript.
 
 ### AUTOR:
 
-[Seu Nome]
-[Seu Email]
-[Data de entrega]
+Sahil Aktar
+sahilmomadeaktar88@gmail.com
+01-04-2026

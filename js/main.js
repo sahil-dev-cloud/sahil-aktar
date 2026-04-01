@@ -2,7 +2,7 @@
  * main.js - Funcionalidades do site
  * Autor: Sahil Aktar
  * Data: 2026
- * Versão: 2.0 - Corrigido e Otimizado
+ * Versão: 3.0 - Totalmente Responsivo e Otimizado
  */
 
 // Aguarda o carregamento completo do DOM
@@ -12,13 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializa todas as funcionalidades
     initHeaderScroll();
     initMobileMenu();
-    initMenuHover(); // NOVA FUNÇÃO
     initSmoothScroll();
     initFormValidation();
     initAnimations();
     initImageFallback();
     updateCopyright();
     initActiveMenu();
+    initModalCertificados();
+    initScrollReveal();
 });
 
 /**
@@ -26,8 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function initHeaderScroll() {
     const header = document.getElementById('header');
-    
-    if (!header) return; // Verifica se o header existe
+    if (!header) return;
     
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
@@ -39,29 +39,62 @@ function initHeaderScroll() {
 }
 
 /**
- * MENU: Destaque ao passar o mouse (HOVER)
- * NOVA FUNÇÃO - Quando passa o mouse no menu, fica em destaque
+ * MENU MOBILE: Funcionalidade do menu hamburguer com detecção de toque
  */
-function initMenuHover() {
+function initMobileMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
     const menuItems = document.querySelectorAll('.menu a');
     
+    if (!menuToggle || !menu) return;
+    
+    // Função para fechar o menu
+    const closeMenu = () => {
+        menu.classList.remove('active');
+        const icon = menuToggle.querySelector('i');
+        if (icon) icon.className = 'fas fa-bars';
+    };
+    
+    // Função para abrir o menu
+    const openMenu = () => {
+        menu.classList.add('active');
+        const icon = menuToggle.querySelector('i');
+        if (icon) icon.className = 'fas fa-times';
+    };
+    
+    // Abre/fecha menu ao clicar no ícone
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (menu.classList.contains('active')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+    
+    // Fecha menu ao clicar em um link
     menuItems.forEach(item => {
-        // Efeito ao entrar com o mouse
-        item.addEventListener('mouseenter', function() {
-            if (!this.classList.contains('ativo')) {
-                this.style.transform = 'scale(1.05)';
-                this.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-                this.style.transition = 'all 0.3s ease';
+        item.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                closeMenu();
             }
         });
-        
-        // Efeito ao sair com o mouse
-        item.addEventListener('mouseleave', function() {
-            if (!this.classList.contains('ativo')) {
-                this.style.transform = 'scale(1)';
-                this.style.backgroundColor = 'transparent';
+    });
+    
+    // Fecha menu ao clicar fora
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768 && menu.classList.contains('active')) {
+            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+                closeMenu();
             }
-        });
+        }
+    });
+    
+    // Fecha menu ao redimensionar a janela para desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && menu.classList.contains('active')) {
+            closeMenu();
+        }
     });
 }
 
@@ -74,67 +107,14 @@ function initActiveMenu() {
     
     menuItems.forEach(item => {
         const href = item.getAttribute('href');
-        
-        // Remove classe ativo de todos
         item.classList.remove('ativo');
         
-        // Adiciona classe ativo ao item correspondente
         if (href === currentPage) {
             item.classList.add('ativo');
         }
         
-        // Caso especial para index.html
-        if (currentPage === '' || currentPage === 'index.html' && href === 'index.html') {
-            if (href === 'index.html') {
-                item.classList.add('ativo');
-            }
-        }
-    });
-}
-
-/**
- * MENU MOBILE: Funcionalidade do menu hamburguer
- */
-function initMobileMenu() {
-    const menuToggle = document.getElementById('menuToggle');
-    const menu = document.getElementById('menu');
-    const menuItems = document.querySelectorAll('.menu a');
-    
-    if (!menuToggle || !menu) return;
-    
-    // Abre/fecha menu ao clicar no ícone
-    menuToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        menu.classList.toggle('active');
-        
-        // Muda o ícone (X ou barras)
-        const icon = this.querySelector('i');
-        if (menu.classList.contains('active')) {
-            icon.className = 'fas fa-times';
-        } else {
-            icon.className = 'fas fa-bars';
-        }
-    });
-    
-    // Fecha menu ao clicar em um link
-    menuItems.forEach(item => {
-        item.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                menu.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                icon.className = 'fas fa-bars';
-            }
-        });
-    });
-    
-    // Fecha menu ao clicar fora
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth <= 768) {
-            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
-                menu.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                if (icon) icon.className = 'fas fa-bars';
-            }
+        if ((currentPage === '' || currentPage === 'index.html') && href === 'index.html') {
+            item.classList.add('ativo');
         }
     });
 }
@@ -147,17 +127,26 @@ function initSmoothScroll() {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
-            // Ignora links vazios ou apenas "#"
-            if (href === '#' || href === '') return;
-            
-            e.preventDefault();
+            if (href === '#' || href === '' || href === 'javascript:void(0)') return;
             
             const target = document.querySelector(href);
             if (target) {
+                e.preventDefault();
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
+                
+                // Fecha o menu mobile se estiver aberto
+                if (window.innerWidth <= 768) {
+                    const menu = document.getElementById('menu');
+                    const menuToggle = document.getElementById('menuToggle');
+                    if (menu && menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        const icon = menuToggle?.querySelector('i');
+                        if (icon) icon.className = 'fas fa-bars';
+                    }
+                }
             }
         });
     });
@@ -170,30 +159,29 @@ function initFormValidation() {
     const forms = document.querySelectorAll('form');
     
     forms.forEach(form => {
-        // Ignora formulários de newsletter ou outros específicos
         if (form.id === 'newsletterForm') {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const email = this.querySelector('input[type="email"]').value;
-                showMessage(this, `Obrigado! Em breve receberá novidades no email: ${email}`, 'success');
-                this.reset();
+                if (email) {
+                    showMessage(this, `Obrigado! Em breve receberá novidades no email: ${email}`, 'success');
+                    this.reset();
+                }
             });
             return;
         }
         
-        // Formulário de contato principal
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
             if (validateForm(this)) {
-                // Botão de loading
                 const submitBtn = this.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
                 submitBtn.disabled = true;
                 
-                // Simula envio (aqui você pode adicionar o envio real via AJAX)
+                // Simula envio (substitua por AJAX real)
                 setTimeout(() => {
                     showMessage(this, 'Mensagem enviada com sucesso! Entrarei em contacto em breve.', 'success');
                     this.reset();
@@ -215,7 +203,6 @@ function validateForm(form) {
     const requiredFields = form.querySelectorAll('[required]');
     
     requiredFields.forEach(field => {
-        // Remove erro anterior
         field.style.borderColor = '';
         field.classList.remove('error');
         
@@ -225,7 +212,6 @@ function validateForm(form) {
             isValid = false;
         }
         
-        // Validação específica de email
         if (field.type === 'email' && field.value.trim()) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(field.value.trim())) {
@@ -235,7 +221,6 @@ function validateForm(form) {
             }
         }
         
-        // Validação de telefone (opcional)
         if (field.type === 'tel' && field.value.trim()) {
             const phoneRegex = /^[0-9\s\+\-\(\)]{9,}$/;
             if (!phoneRegex.test(field.value.trim())) {
@@ -253,16 +238,13 @@ function validateForm(form) {
  * FORMULÁRIO: Mostra mensagem de feedback
  */
 function showMessage(element, text, type) {
-    // Determina onde inserir a mensagem
     const target = element.classList.contains('formulario-contato') ? element : element.closest('.formulario-contato') || element;
     
-    // Remove mensagem anterior se existir
     const oldMessage = target.querySelector('.form-message');
     if (oldMessage) {
         oldMessage.remove();
     }
     
-    // Cria nova mensagem
     const message = document.createElement('div');
     message.className = `form-message ${type}`;
     message.innerHTML = `
@@ -270,7 +252,6 @@ function showMessage(element, text, type) {
         <span>${text}</span>
     `;
     
-    // Estilos da mensagem
     message.style.cssText = `
         padding: 1rem;
         margin-top: 1rem;
@@ -288,7 +269,6 @@ function showMessage(element, text, type) {
     
     target.appendChild(message);
     
-    // Remove após 5 segundos
     setTimeout(() => {
         if (message.parentNode) {
             message.style.animation = 'slideOut 0.3s ease';
@@ -300,10 +280,10 @@ function showMessage(element, text, type) {
 }
 
 /**
- * ANIMAÇÕES ao scroll (fade in)
+ * ANIMAÇÕES ao scroll com Intersection Observer
  */
 function initAnimations() {
-    const elements = document.querySelectorAll('.card, .sobre-grid, .section-title, .servico-card-home, .projeto-card');
+    const elements = document.querySelectorAll('.card, .sobre-grid, .section-title, .servico-card-home, .projeto-card, .certificado-card');
     
     if (elements.length === 0) return;
     
@@ -312,7 +292,7 @@ function initAnimations() {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target); // Para de observar após animar
+                observer.unobserve(entry.target);
             }
         });
     }, { 
@@ -329,18 +309,42 @@ function initAnimations() {
 }
 
 /**
+ * SCROLL REVEAL: Animação adicional para elementos que aparecem ao rolar
+ */
+function initScrollReveal() {
+    const revealElements = document.querySelectorAll('.skill-item-detalhe, .timeline-item, .faq-item, .processo-item');
+    
+    if (revealElements.length === 0) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateX(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    revealElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateX(-20px)';
+        element.style.transition = 'all 0.5s ease';
+        observer.observe(element);
+    });
+}
+
+/**
  * IMAGENS: Fallback caso não carreguem
  */
 function initImageFallback() {
     const images = document.querySelectorAll('img');
     
     images.forEach(img => {
-        // Verifica se a imagem já carregou
         if (img.complete && img.naturalHeight === 0) {
             setFallbackImage(img);
         }
         
-        // Evento de erro
         img.addEventListener('error', function() {
             setFallbackImage(this);
         });
@@ -351,17 +355,15 @@ function initImageFallback() {
  * Define imagem de fallback
  */
 function setFallbackImage(img) {
-    // Evita loop infinito
     if (img.hasAttribute('data-fallback')) return;
     img.setAttribute('data-fallback', 'true');
     
-    // Define fallback baseado no contexto
     if (img.alt && img.alt.toLowerCase().includes('background')) {
         img.src = 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80';
     } else if (img.alt && img.alt.toLowerCase().includes('perfil')) {
         img.src = 'https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80';
     } else {
-        img.src = 'https://via.placeholder.com/800x600/2b6f9b/ffffff?text=Sahil+Aktar';
+        img.src = 'https://via.placeholder.com/800x600/2b6f9b/ffffff?text=Imagem+Não+Disponível';
     }
 }
 
@@ -373,57 +375,61 @@ function updateCopyright() {
     const currentYear = new Date().getFullYear();
     
     copyrightElements.forEach(el => {
-        // Substitui o ano no texto
         el.innerHTML = el.innerHTML.replace(/© \d{4}/, `© ${currentYear}`);
     });
 }
 
 /**
- * LOADING: State para botões
+ * MODAL: Funcionalidade para certificados
  */
-function setLoading(button, isLoading) {
-    if (!button) return;
+function initModalCertificados() {
+    const modal = document.getElementById('modalCertificado');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const closeBtn = document.querySelector('.fechar-modal');
+    const certificados = document.querySelectorAll('.certificado-card');
     
-    if (isLoading) {
-        button.disabled = true;
-        button.dataset.originalText = button.innerHTML;
-        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
-    } else {
-        button.disabled = false;
-        if (button.dataset.originalText) {
-            button.innerHTML = button.dataset.originalText;
-        }
+    if (!modal || !modalImg) return;
+    
+    certificados.forEach(card => {
+        card.addEventListener('click', function() {
+            const img = this.querySelector('.certificado-imagem img');
+            const title = this.querySelector('.certificado-info h3')?.innerText || 'Certificado';
+            const desc = this.querySelector('.certificado-info p')?.innerText || '';
+            
+            if (img && img.src) {
+                modalImg.src = img.src;
+                modalImg.alt = title;
+            }
+            
+            if (modalTitle) modalTitle.innerText = title;
+            if (modalDesc) modalDesc.innerText = desc;
+            
+            modal.classList.add('ativo');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
     }
-}
-
-/**
- * CLIPBOARD: Copiar texto
- */
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        // Mostra mensagem de sucesso
-        const tempDiv = document.createElement('div');
-        tempDiv.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #28a745;
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            z-index: 9999;
-            animation: slideIn 0.3s ease;
-        `;
-        tempDiv.innerHTML = '<i class="fas fa-check"></i> Copiado!';
-        document.body.appendChild(tempDiv);
-        
-        setTimeout(() => {
-            tempDiv.remove();
-        }, 2000);
-    }).catch(err => {
-        console.error('Erro ao copiar:', err);
-        alert('Erro ao copiar. Tente novamente.');
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    function closeModal() {
+        modal.classList.remove('ativo');
+        document.body.style.overflow = '';
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('ativo')) {
+            closeModal();
+        }
     });
 }
 
@@ -444,6 +450,7 @@ window.addEventListener('offline', function() {
         padding: 0.5rem;
         z-index: 10000;
         animation: slideDown 0.3s ease;
+        font-family: 'Open Sans', sans-serif;
     `;
     warning.innerHTML = '<i class="fas fa-wifi-slash"></i> Sem conexão com internet. Algumas funcionalidades podem estar limitadas.';
     document.body.prepend(warning);
@@ -456,7 +463,6 @@ window.addEventListener('online', function() {
         setTimeout(() => warning.remove(), 300);
     }
     
-    // Mostra mensagem de sucesso
     const success = document.createElement('div');
     success.style.cssText = `
         position: fixed;
@@ -469,6 +475,7 @@ window.addEventListener('online', function() {
         padding: 0.5rem;
         z-index: 10000;
         animation: slideDown 0.3s ease;
+        font-family: 'Open Sans', sans-serif;
     `;
     success.innerHTML = '<i class="fas fa-wifi"></i> Conexão restabelecida!';
     document.body.prepend(success);
@@ -480,7 +487,56 @@ window.addEventListener('online', function() {
 });
 
 /**
- * ANIMAÇÕES GLOBAIS (adiciona ao CSS via JS)
+ * LOADING: State para botões (função utilitária)
+ */
+function setLoading(button, isLoading) {
+    if (!button) return;
+    
+    if (isLoading) {
+        button.disabled = true;
+        button.dataset.originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
+    } else {
+        button.disabled = false;
+        if (button.dataset.originalText) {
+            button.innerHTML = button.dataset.originalText;
+        }
+    }
+}
+
+/**
+ * CLIPBOARD: Copiar texto (função utilitária)
+ */
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        const tempDiv = document.createElement('div');
+        tempDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
+        `;
+        tempDiv.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+        document.body.appendChild(tempDiv);
+        
+        setTimeout(() => {
+            tempDiv.remove();
+        }, 2000);
+    }).catch(err => {
+        console.error('Erro ao copiar:', err);
+        alert('Erro ao copiar. Tente novamente.');
+    });
+}
+
+/**
+ * ADICIONA ANIMAÇÕES GLOBAIS AO CSS
  */
 const style = document.createElement('style');
 style.textContent = `
@@ -526,21 +582,6 @@ style.textContent = `
             opacity: 0;
             transform: translateY(-100%);
         }
-    }
-    
-    /* Efeito hover no menu (garantia) */
-    .menu a {
-        transition: all 0.3s ease !important;
-    }
-    
-    .menu a:hover {
-        transform: scale(1.05);
-        background-color: rgba(255, 255, 255, 0.2) !important;
-    }
-    
-    .menu a.ativo:hover {
-        transform: scale(1);
-        background-color: var(--branco) !important;
     }
 `;
 document.head.appendChild(style);

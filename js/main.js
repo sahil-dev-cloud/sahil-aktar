@@ -1,7 +1,6 @@
 /**
- * main.js - versão corrigida e responsiva
- * Autor: Sahil Aktar
- * Ajustado para mobile, tablet e desktop
+ * main.js - Funcionalidades do site
+ * Versão: 3.0 - Responsivo, menu mobile corrigido e otimizado
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initActiveMenu();
     initSmoothScroll();
-    initFormValidation();
+    initFormEnhancements();
     initTabs();
-    initCertificadoModal();
+    initModalCertificado();
     initImageFallback();
     updateCopyright();
 });
@@ -24,7 +23,7 @@ function initHeaderScroll() {
     if (!header) return;
 
     const onScroll = () => {
-        if (window.scrollY > 20) {
+        if (window.scrollY > 40) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
@@ -36,22 +35,47 @@ function initHeaderScroll() {
 }
 
 /* =========================
+   MENU ATIVO
+========================= */
+function initActiveMenu() {
+    const links = document.querySelectorAll('.menu a');
+    if (!links.length) return;
+
+    let currentPage = window.location.pathname.split('/').pop();
+    if (!currentPage || currentPage === '/') currentPage = 'index.html';
+
+    links.forEach(link => {
+        const href = link.getAttribute('href');
+        link.classList.remove('ativo');
+
+        if (href === currentPage) {
+            link.classList.add('ativo');
+        }
+
+        if (currentPage === 'index.html' && href === 'index.html') {
+            link.classList.add('ativo');
+        }
+    });
+}
+
+/* =========================
    MENU MOBILE
 ========================= */
 function initMobileMenu() {
     const menuToggle = document.getElementById('menuToggle');
     const menu = document.getElementById('menu');
-    const body = document.body;
+    const header = document.getElementById('header');
 
     if (!menuToggle || !menu) return;
 
     const icon = menuToggle.querySelector('i');
+    const menuLinks = menu.querySelectorAll('a');
 
     const openMenu = () => {
         menu.classList.add('active');
         menuToggle.classList.add('active');
         menuToggle.setAttribute('aria-expanded', 'true');
-        body.classList.add('menu-open');
+        document.body.classList.add('menu-open');
 
         if (icon) {
             icon.classList.remove('fa-bars');
@@ -63,7 +87,7 @@ function initMobileMenu() {
         menu.classList.remove('active');
         menuToggle.classList.remove('active');
         menuToggle.setAttribute('aria-expanded', 'false');
-        body.classList.remove('menu-open');
+        document.body.classList.remove('menu-open');
 
         if (icon) {
             icon.classList.remove('fa-times');
@@ -83,9 +107,18 @@ function initMobileMenu() {
     };
 
     menuToggle.addEventListener('click', toggleMenu);
-    menuToggle.addEventListener('touchstart', toggleMenu, { passive: false });
+
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                closeMenu();
+            }
+        });
+    });
 
     document.addEventListener('click', (e) => {
+        if (window.innerWidth > 768) return;
+
         const clickedInsideMenu = menu.contains(e.target);
         const clickedToggle = menuToggle.contains(e.target);
 
@@ -94,72 +127,48 @@ function initMobileMenu() {
         }
     });
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeMenu();
-        }
-    });
-
-    menu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-            closeMenu();
-        });
-    });
-
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
             closeMenu();
         }
     });
-}
 
-/* =========================
-   MENU ATIVO
-========================= */
-function initActiveMenu() {
-    const menuItems = document.querySelectorAll('.menu a');
-    if (!menuItems.length) return;
-
-    let currentPage = window.location.pathname.split('/').pop();
-
-    if (!currentPage || currentPage === '/') {
-        currentPage = 'index.html';
-    }
-
-    menuItems.forEach((item) => {
-        const href = item.getAttribute('href');
-
-        item.classList.remove('ativo');
-
-        if (
-            href === currentPage ||
-            (currentPage === 'index.html' && href === './') ||
-            (currentPage === '' && href === 'index.html')
-        ) {
-            item.classList.add('ativo');
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('active')) {
+            closeMenu();
         }
     });
+
+    if (header) {
+        const observer = new MutationObserver(() => {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+
+        observer.observe(header, { attributes: true, attributeFilter: ['class'] });
+    }
 }
 
 /* =========================
    SCROLL SUAVE
 ========================= */
 function initSmoothScroll() {
-    const links = document.querySelectorAll('a[href^="#"]');
+    const internalLinks = document.querySelectorAll('a[href^="#"]');
 
-    links.forEach((link) => {
-        link.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (!targetId || targetId === '#') return;
+    internalLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#') return;
 
-            const target = document.querySelector(targetId);
+            const target = document.querySelector(href);
             if (!target) return;
 
             e.preventDefault();
 
             const header = document.getElementById('header');
             const headerHeight = header ? header.offsetHeight : 0;
-            const targetTop = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 12;
+            const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight - 10;
 
             window.scrollTo({
                 top: targetTop,
@@ -172,16 +181,14 @@ function initSmoothScroll() {
 /* =========================
    FORMULÁRIO
 ========================= */
-function initFormValidation() {
+function initFormEnhancements() {
     const form = document.getElementById('formContato');
-    if (!form) return;
-
+    const telefone = document.getElementById('telefone');
     const btn = document.getElementById('btnEnviar');
     const statusDiv = document.getElementById('mensagem-status');
-    const telefone = document.getElementById('telefone');
 
     if (telefone) {
-        telefone.addEventListener('input', function (e) {
+        telefone.addEventListener('input', (e) => {
             let value = e.target.value.replace(/\D/g, '').slice(0, 9);
 
             if (value.length > 5) {
@@ -194,7 +201,9 @@ function initFormValidation() {
         });
     }
 
-    form.addEventListener('submit', function () {
+    if (!form) return;
+
+    form.addEventListener('submit', () => {
         if (!btn) return;
 
         btn.disabled = true;
@@ -207,26 +216,30 @@ function initFormValidation() {
         setTimeout(() => {
             btn.disabled = false;
             btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensagem';
-        }, 4000);
+        }, 5000);
     });
+
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
 }
 
 /* =========================
    ABAS
 ========================= */
 function initTabs() {
-    const tabButtons = document.querySelectorAll('.aba-btn');
-    const tabPanels = document.querySelectorAll('.aba-painel');
+    const buttons = document.querySelectorAll('.aba-btn');
+    const panels = document.querySelectorAll('.aba-painel');
 
-    if (!tabButtons.length || !tabPanels.length) return;
+    if (!buttons.length || !panels.length) return;
 
-    tabButtons.forEach((button) => {
+    buttons.forEach(button => {
         button.addEventListener('click', () => {
-            const target = button.dataset.aba;
+            const target = button.getAttribute('data-aba');
             if (!target) return;
 
-            tabButtons.forEach((btn) => btn.classList.remove('ativo'));
-            tabPanels.forEach((panel) => panel.classList.remove('ativo'));
+            buttons.forEach(btn => btn.classList.remove('ativo'));
+            panels.forEach(panel => panel.classList.remove('ativo'));
 
             button.classList.add('ativo');
 
@@ -239,87 +252,66 @@ function initTabs() {
 }
 
 /* =========================
-   MODAL CERTIFICADOS
+   MODAL CERTIFICADO
 ========================= */
-function initCertificadoModal() {
-    const cards = document.querySelectorAll('.certificado-card');
-    const modal = document.querySelector('.modal-certificado');
-    const modalImg = modal?.querySelector('img');
-    const modalTitle = modal?.querySelector('.modal-legenda h4');
-    const modalText = modal?.querySelector('.modal-legenda p');
-    const closeBtn = modal?.querySelector('.fechar-modal');
+function initModalCertificado() {
+    const modal = document.getElementById('modalCertificado');
+    if (!modal) return;
 
-    if (!cards.length || !modal || !modalImg) return;
-
-    const closeModal = () => {
-        modal.classList.remove('ativo');
-        document.body.classList.remove('menu-open');
-    };
-
-    cards.forEach((card) => {
-        card.addEventListener('click', () => {
-            const img = card.querySelector('img');
-            const title = card.querySelector('.certificado-info h3');
-            const text = card.querySelector('.certificado-info p');
-
-            if (img) {
-                modalImg.src = img.src;
-                modalImg.alt = img.alt || 'Certificado';
-            }
-
-            if (modalTitle) {
-                modalTitle.textContent = title ? title.textContent : 'Certificado';
-            }
-
-            if (modalText) {
-                modalText.textContent = text ? text.textContent : '';
-            }
-
-            modal.classList.add('ativo');
-            document.body.classList.add('menu-open');
-        });
-    });
+    const closeBtn = modal.querySelector('.fechar-modal');
 
     if (closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
+        closeBtn.addEventListener('click', fecharModal);
     }
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            closeModal();
+            fecharModal();
         }
     });
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('ativo')) {
-            closeModal();
+            fecharModal();
         }
     });
 }
 
+function abrirModal(src, titulo, descricao = '') {
+    const modal = document.getElementById('modalCertificado');
+    const img = document.getElementById('modalImagem');
+    const tituloEl = document.getElementById('modalTitulo');
+    const descricaoEl = document.getElementById('modalDescricao');
+
+    if (!modal || !img || !tituloEl || !descricaoEl) return;
+
+    img.src = src;
+    img.alt = titulo;
+    tituloEl.textContent = titulo;
+    descricaoEl.textContent = descricao;
+    modal.classList.add('ativo');
+    document.body.classList.add('menu-open');
+}
+
+function fecharModal() {
+    const modal = document.getElementById('modalCertificado');
+    if (!modal) return;
+
+    modal.classList.remove('ativo');
+    document.body.classList.remove('menu-open');
+}
+
 /* =========================
-   FALLBACK DE IMAGEM
+   FALLBACK DE IMAGENS
 ========================= */
 function initImageFallback() {
-    document.querySelectorAll('img').forEach((img) => {
-        img.addEventListener(
-            'error',
-            function () {
-                this.onerror = null;
-                this.src =
-                    'data:image/svg+xml;charset=UTF-8,' +
-                    encodeURIComponent(`
-                        <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500">
-                            <rect width="100%" height="100%" fill="#e9ecef"/>
-                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-                                fill="#6c757d" font-size="24" font-family="Arial">
-                                Imagem indisponível
-                            </text>
-                        </svg>
-                    `);
-            },
-            { once: true }
-        );
+    const images = document.querySelectorAll('img');
+
+    images.forEach(img => {
+        img.addEventListener('error', function () {
+            this.style.objectFit = 'contain';
+            this.style.background = '#f1f3f5';
+        });
     });
 }
 
@@ -328,8 +320,7 @@ function initImageFallback() {
 ========================= */
 function updateCopyright() {
     const year = new Date().getFullYear();
-    const copyright = document.querySelector('.copyright p');
-    if (!copyright) return;
-
-    copyright.innerHTML = `© ${year} Sahil Aktar - Todos os direitos reservados | Feito em Moçambique`;
+    document.querySelectorAll('.copyright p').forEach(el => {
+        el.textContent = `© ${year} Sahil Aktar - Todos os direitos reservados | Feito em Moçambique`;
+    });
 }

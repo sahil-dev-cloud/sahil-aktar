@@ -23,9 +23,9 @@
             <h2>Sahil Aktar</h2>
         </div>
 
-        <div class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu" type="button">
             <i class="fas fa-bars"></i>
-        </div>
+        </button>
 
         <ul class="menu" id="menu">
             <li><a href="index.html"><i class="fas fa-home"></i> <span>Início</span></a></li>
@@ -79,19 +79,19 @@
 
     <section class="abas-container">
         <div class="abas-header">
-            <button class="aba-btn ativo" onclick="mostrarAba('sobre', this)">
+            <button class="aba-btn ativo" type="button" onclick="mostrarAba('sobre', this)">
                 <i class="fas fa-user-circle"></i> Sobre Mim
             </button>
-            <button class="aba-btn" onclick="mostrarAba('formacao', this)">
+            <button class="aba-btn" type="button" onclick="mostrarAba('formacao', this)">
                 <i class="fas fa-graduation-cap"></i> Formação
             </button>
-            <button class="aba-btn" onclick="mostrarAba('skills', this)">
+            <button class="aba-btn" type="button" onclick="mostrarAba('skills', this)">
                 <i class="fas fa-code"></i> Habilidades
             </button>
-            <button class="aba-btn" onclick="mostrarAba('projetos', this)">
+            <button class="aba-btn" type="button" onclick="mostrarAba('projetos', this)">
                 <i class="fas fa-briefcase"></i> Projectos
             </button>
-            <button class="aba-btn" onclick="mostrarAba('certificados', this)">
+            <button class="aba-btn" type="button" onclick="mostrarAba('certificados', this)">
                 <i class="fas fa-certificate"></i> Certificações
             </button>
         </div>
@@ -591,9 +591,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const icon = this.querySelector('i');
             if (icon) {
-                icon.className = menu.classList.contains('active')
-                    ? 'fas fa-times'
-                    : 'fas fa-bars';
+                const aberto = menu.classList.contains('active');
+                icon.className = aberto ? 'fas fa-times' : 'fas fa-bars';
+                this.setAttribute('aria-expanded', aberto ? 'true' : 'false');
             }
         });
     }
@@ -616,6 +616,6 @@ document.addEventListener('keydown', function (e) {
     }
 });
 </script>
-<script src="js/main.js"></script>
+
 </body>
 </html>

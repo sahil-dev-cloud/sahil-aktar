@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahil Aktar | Estudante de Tecnologia em Moçambique</title>
+    
+    <meta name="description" content="Site profissional de Sahil Aktar, estudante de Tecnologia de Informação na Universidade Católica de Moçambique. Desenvolvimento com PHP, Java, JavaScript, HTML, CSS e MySQL.">
+    <meta name="keywords" content="Sahil Aktar, Programador Moçambique, PHP, Java, JavaScript, Desenvolvimento Web, UCM, Tecnologia">
+    <meta name="author" content="Sahil Aktar">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        .card-img-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background-color: var(--cinza-claro);
+        }
+        
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            padding: 0.45rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tag {
+            background: #eef3f8;
+            color: #1e3a5f;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .card-info-extra {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #555;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .card-img-container {
+                height: 200px;
+            }
+            
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card-img-container {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <nav class="menu-principal">
+        <div class="logo">
+            <h2>Sahil Aktar</h2>
+        </div>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <ul class="menu" id="menu">
+            <li><a href="index.html" class="ativo"><i class="fas fa-home"></i> <span>Início</span></a></li>
+            <li><a href="sobre.html"><i class="fas fa-user"></i> <span>Sobre</span></a></li>
+            <li><a href="servicos.html"><i class="fas fa-cogs"></i> <span>Serviços</span></a></li>
+            <li><a href="contato.html"><i class="fas fa-envelope"></i> <span>Contacto</span></a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero-full">
+    <div class="hero-background">
+        <img src="imagens/background-tech.png" alt="Background Tecnologia">
+    </div>
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+        <span class="badge">
+            <i class="fas fa-graduation-cap"></i> Estudante de Tecnologia de Informação
+        </span>
+        
+        <h1>
+            Olá, eu sou<br>
+            <strong>Sahil Aktar</strong>
+        </h1>
+        
+        <p>
+            <i class="fas fa-map-marker-alt"></i> Universidade Católica de Moçambique • 3º Ano<br>
+            <strong>PHP | Java | JavaScript | HTML | CSS | MySQL</strong>
+        </p>
+        
+        <div class="btn-container">
+            <a href="servicos.html" class="btn btn-primary">
+                <i class="fas fa-cogs"></i> Ver Serviços
+            </a>
+            <a href="https://wa.me/258833975920?text=Olá%20Sahil%2C%20vim%20do%20seu%20site%20e%20gostaria%20de%20conversar" class="btn btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+        
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number">6+</div>
+                <div class="stat-label">Linguagens</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Projectos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Anos Académicos</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="section-title">
+        <h2>Sobre Mim</h2>
+        <p>Conheça um pouco da minha trajetória em Moçambique</p>
+    </div>
+    
+    <div class="sobre-grid">
+        <div class="sobre-content">
+            <h3>Estudante dedicado e apaixonado por tecnologia</h3>
+            <p>
+                Actualmente no <strong>3º ano</strong> do curso de <strong>Tecnologia de Informação</strong> na 
+                <strong>Universidade Católica de Moçambique</strong>, tenho me dedicado ao aprendizado de 
+                diversas tecnologias, com especial enfoque em <strong>PHP</strong> para desenvolvimento web, 
+                <strong>Java</strong> para sistemas desktop, <strong>JavaScript</strong> para interatividade 
+                e <strong>MySQL</strong> para bases de dados.
+            </p>
+            
+            <p>
+                Desenvolvo projectos práticos voltados para soluções reais, com foco em organização,
+                funcionalidade, aparência profissional e facilidade de utilização.
+            </p>
+            
+            <ul class="info-list">
+                <li><i class="fas fa-graduation-cap"></i> <strong>Instituição:</strong> UCM - Universidade Católica de Moçambique</li>
+                <li><i class="fas fa-code"></i> <strong>Especialidades:</strong> PHP, Java, JavaScript, HTML, CSS, MySQL</li>
+                <li><i class="fas fa-envelope"></i> <strong>Email:</strong> sahilmomadeaktar88@gmail.com</li>
+                <li><i class="fas fa-phone"></i> <strong>Telefone:</strong> 87 474 4305 / 83 397 5920</li>
+                <li><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> <a href="https://wa.me/258833975920" style="color: var(--azul-profissional);">83 397 5920</a></li>
+            </ul>
+            
+            <div class="btn-group">
+                <a href="sobre.html" class="btn btn-primary">
+                    <i class="fas fa-user"></i> Mais sobre mim
+                </a>
+                <a href="contato.html" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i> Entrar em contacto
+                </a>
+            </div>
+        </div>
+        
+        <div class="skills-card">
+            <h3><i class="fas fa-code"></i> Habilidades</h3>
+            
+            <div class="skills-detalhadas">
+                <div class="skill-item-detalhe">
+                    <div class="skill-info">
+                        <span class="skill-nome"><i class="fab fa-php"></i> PHP</span>
+                        <span class="skill-nivel">Intermediário</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progresso" style="width: 75%;"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item-detalhe">
+                    <div class="skill-info">
+                        <span class="skill-nome"><i class="fab fa-java"></i> Java</span>
+                        <span class="skill-nivel">Intermediário</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progresso" style="width: 70%;"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item-detalhe">
+                    <div class="skill-info">
+                        <span class="skill-nome"><i class="fab fa-js"></i> JavaScript</span>
+                        <span class="skill-nivel">Intermediário</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progresso" style="width: 65%;"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item-detalhe">
+                    <div class="skill-info">
+                        <span class="skill-nome"><i class="fab fa-html5"></i> HTML5</span>
+                        <span class="skill-nivel">Intermediário</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progresso" style="width: 80%;"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item-detalhe">
+                    <div class="skill-info">
+                        <span class="skill-nome"><i class="fab fa-css3-alt"></i> CSS3</span>
+                        <span class="skill-nivel">Intermediário</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progresso" style="width: 70%;"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item-detalhe">
+                    <div class="skill-info">
+                        <span class="skill-nome"><i class="fas fa-database"></i> MySQL</span>
+                        <span class="skill-nivel">Básico/Intermediário</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progresso" style="width: 65%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-container" style="margin-top: 1.5rem;">
+                <table class="tabela-resumo">
+                    <thead>
+                        <tr>
+                            <th>Tecnologia</th>
+                            <th>Nível</th>
+                            <th>Experiência</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fab fa-php"></i> PHP</td>
+                            <td>Intermediário</td>
+                            <td>1 ano</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fab fa-java"></i> Java</td>
+                            <td>Intermediário</td>
+                            <td>2 anos</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fab fa-js"></i> JavaScript</td>
+                            <td>Intermediário</td>
+                            <td>1 ano</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fab fa-html5"></i> HTML5</td>
+                            <td>Intermediário</td>
+                            <td>2 anos</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fab fa-css3-alt"></i> CSS3</td>
+                            <td>Intermediário</td>
+                            <td>2 anos</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-database"></i> MySQL</td>
+                            <td>Básico/Intermediário</td>
+                            <td>1 ano</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--branco-fundo);">
+    <div class="container">
+        <div class="section-title">
+            <h2>O que posso fazer por si</h2>
+            <p>Soluções tecnológicas para o seu negócio ou projecto</p>
+        </div>
+        
+        <div class="servicos-grid-home">
+            <div class="servico-card-home">
+                <div class="servico-icon">
+                    <i class="fab fa-php"></i>
+                </div>
+                <h3>Desenvolvimento PHP</h3>
+                <p>Sistemas web dinâmicos, áreas administrativas e aplicações completas com PHP e MySQL.</p>
+            </div>
+            
+            <div class="servico-card-home">
+                <div class="servico-icon">
+                    <i class="fab fa-java"></i>
+                </div>
+                <h3>Sistemas em Java</h3>
+                <p>Aplicações desktop com interface gráfica para gestão de negócios e controlo de processos.</p>
+            </div>
+            
+            <div class="servico-card-home">
+                <div class="servico-icon">
+                    <i class="fab fa-js"></i>
+                </div>
+                <h3>JavaScript Interativo</h3>
+                <p>Interatividade e dinamismo para websites com JavaScript moderno.</p>
+            </div>
+            
+            <div class="servico-card-home">
+                <div class="servico-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Websites Responsivos</h3>
+                <p>Criação de sites modernos que se adaptam a qualquer dispositivo.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="servicos.html" class="btn btn-primary">
+                <i class="fas fa-arrow-right"></i> Ver todos os serviços
+            </a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-title">
+            <h2>Projectos em Destaque</h2>
+            <p>Alguns trabalhos desenvolvidos durante a minha formação</p>
+        </div>
+        
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="imagens/projeto-carros.png" alt="Sistema de Gestão e Venda de Carros em PHP">
+                    <span class="card-badge">PHP</span>
+                </div>
+                <div class="card-content">
+                    <h3>Sistema de Gestão e Venda de Carros</h3>
+                    <p>
+                        Sistema web desenvolvido em PHP com MySQL para cadastro de viaturas, controlo de stock,
+                        registo de vendas, clientes, preços e relatórios. <strong>Versão demo feita em PHP.</strong>
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Bootstrap</span>
+                    </div>
+                    <div class="card-info-extra">
+                        Projecto demonstrativo profissional
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="imagens/projeto-bottlestore.jpg" alt="Sistema de Gestão para Bottle Store em PHP">
+                    <span class="card-badge">PHP</span>
+                </div>
+                <div class="card-content">
+                    <h3>Sistema de Gestão - Bottle Store</h3>
+                    <p>
+                        Sistema web desenvolvido em PHP com MySQL para controlo de vendas, gestão de stock,
+                        validade de produtos e relatórios para bottle store.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Bootstrap</span>
+                    </div>
+                    <div class="card-info-extra">
+                        Sistema demo funcional
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="imagens/projeto-clinica.png" alt="Website Clínica Vitalis Prime">
+                    <span class="card-badge">HTML/CSS</span>
+                </div>
+                <div class="card-content">
+                    <h3>Clínica Vitalis Prime</h3>
+                    <p>
+                        Website institucional desenvolvido para a cadeira de Fundamentos de Páginas Web,
+                        com informações sobre serviços, horários, especialidades e formulário de contacto.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Responsivo</span>
+                    </div>
+                    <div class="card-info-extra">
+                        Projecto académico
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="contato.html" class="btn btn-primary">
+                <i class="fas fa-envelope"></i> Solicitar informação
+            </a>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--preto-suave); color: var(--branco); text-align: center; padding: 4rem 1rem;">
+    <div class="container" style="max-width: 800px;">
+        <i class="fas fa-quote-left" style="font-size: 3rem; opacity: 0.5; margin-bottom: 1rem;"></i>
+        <p style="font-size: 1.5rem; font-weight: 300; line-height: 1.6; font-style: italic;">
+            "Em Moçambique, a tecnologia pode ser a chave para resolver muitos dos nossos desafios. 
+            Cada linha de código é uma oportunidade de fazer a diferença."
+        </p>
+        <p style="margin-top: 2rem; font-weight: 600;">— Sahil Aktar, Estudante de TI</p>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Sahil Aktar</h4>
+            <p>Estudante de Tecnologia de Informação na Universidade Católica de Moçambique, especializado em PHP, Java, JavaScript e Desenvolvimento Web.</p>
+            <div class="social-footer">
+                <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/258833975920" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p><i class="fas fa-envelope"></i> sahilmomadeaktar88@gmail.com</p>
+            <p><i class="fas fa-envelope"></i> 702240241@ucm.ac.mz</p>
+            <p><i class="fas fa-phone"></i> 87 474 4305</p>
+            <p><i class="fas fa-phone"></i> 83 397 5920</p>
+            <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/258833975920" style="color: rgba(255,255,255,0.7);">83 397 5920</a></p>
+        </div>
+        
+        <div class="footer-col">
+            <h4>Links Rápidos</h4>
+            <p><a href="index.html"><i class="fas fa-chevron-right"></i> Início</a></p>
+            <p><a href="sobre.html"><i class="fas fa-chevron-right"></i> Sobre Mim</a></p>
+            <p><a href="servicos.html"><i class="fas fa-chevron-right"></i> Serviços</a></p>
+            <p><a href="contato.html"><i class="fas fa-chevron-right"></i> Contacto</a></p>
+        </div>
+        
+        <div class="footer-col">
+            <h4>Horário</h4>
+            <p><i class="fas fa-clock"></i> Segunda - Sexta: 8h - 17h</p>
+            <p><i class="fas fa-clock"></i> Sábado: 9h - 12h</p>
+            <p><i class="fas fa-map-marker-alt"></i> Moçambique</p>
+            <p><i class="fas fa-clock"></i> Resposta em até 24h</p>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>© 2026 Sahil Aktar - Todos os direitos reservados | Feito em Moçambique com <i class="fas fa-heart" style="color: #ff6b6b;"></i> para a tecnologia</p>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            menu.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    }
+    
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+});
+</script>
+
+<script src="js/main.js"></script>
+</body>
+</html>

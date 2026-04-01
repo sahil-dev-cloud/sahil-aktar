@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mim - Sahil Aktar | Estudante de TI em Moçambique</title>
+
+    <meta name="description" content="Conheça Sahil Aktar, estudante de Tecnologia de Informação na Universidade Católica de Moçambique, actualmente no 3º ano.">
+    <meta name="keywords" content="Sahil Aktar, Tecnologia de Informação, UCM, Programador Moçambique, PHP, Java, JavaScript, HTML, CSS, MySQL">
+    <meta name="author" content="Sahil Aktar">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sobre.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header id="header">
+    <nav class="menu-principal">
+        <div class="logo">
+            <h2>Sahil Aktar</h2>
+        </div>
+
+        <div class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="menu" id="menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Início</span></a></li>
+            <li><a href="sobre.html" class="ativo"><i class="fas fa-user"></i> <span>Sobre</span></a></li>
+            <li><a href="servicos.html"><i class="fas fa-cogs"></i> <span>Serviços</span></a></li>
+            <li><a href="contato.html"><i class="fas fa-envelope"></i> <span>Contacto</span></a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="sobre-wrapper">
+
+    <section class="perfil-grid">
+        <div class="perfil-card">
+            <div class="perfil-imagem">
+                <img src="imagens/perfil.png" alt="Foto de Sahil Aktar">
+            </div>
+
+            <h1>Sahil Aktar</h1>
+
+            <span class="perfil-titulo">
+                <i class="fas fa-graduation-cap"></i> Estudante de Tecnologia de Informação
+            </span>
+
+            <div class="perfil-contato">
+                <p><i class="fas fa-university"></i> Universidade Católica de Moçambique</p>
+                <p><i class="fas fa-user-graduate"></i> 3º ano</p>
+                <p><i class="fas fa-map-marker-alt"></i> Nampula, Moçambique</p>
+                <p><i class="fas fa-envelope"></i> sahilmomadeaktar88@gmail.com</p>
+                <p><i class="fas fa-phone"></i> 87 474 4305 / 83 397 5920</p>
+                <p><i class="fas fa-code"></i> Desenvolvedor em formação</p>
+            </div>
+
+            <div class="social-footer perfil-social">
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/258833975920" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="frase-impacto">
+            <i class="fas fa-quote-left"></i>
+            <p>
+                A tecnologia é uma ferramenta poderosa para criar soluções úteis,
+                melhorar processos e contribuir para o desenvolvimento da nossa sociedade.
+            </p>
+            <p class="autor">— Sahil Aktar</p>
+        </div>
+    </section>
+
+    <section class="abas-container">
+        <div class="abas-header">
+            <button class="aba-btn ativo" onclick="mostrarAba('sobre', this)">
+                <i class="fas fa-user-circle"></i> Sobre Mim
+            </button>
+            <button class="aba-btn" onclick="mostrarAba('formacao', this)">
+                <i class="fas fa-graduation-cap"></i> Formação
+            </button>
+            <button class="aba-btn" onclick="mostrarAba('skills', this)">
+                <i class="fas fa-code"></i> Habilidades
+            </button>
+            <button class="aba-btn" onclick="mostrarAba('projetos', this)">
+                <i class="fas fa-briefcase"></i> Projectos
+            </button>
+            <button class="aba-btn" onclick="mostrarAba('certificados', this)">
+                <i class="fas fa-certificate"></i> Certificações
+            </button>
+        </div>
+
+        <div class="abas-content">
+
+            <div id="aba-sobre" class="aba-painel ativo">
+                <h2><i class="fas fa-user-circle"></i> Sobre Mim</h2>
+
+                <div class="sobre-texto">
+                    <p>
+                        Olá. Chamo-me <strong>Sahil Aktar</strong> e sou estudante do
+                        <strong>3º ano</strong> do curso de <strong>Tecnologia de Informação</strong>
+                        na <strong>Universidade Católica de Moçambique</strong>.
+                    </p>
+
+                    <p>
+                        Tenho interesse pelo desenvolvimento de sistemas e páginas web,
+                        com conhecimentos em <strong>PHP</strong>, <strong>Java</strong>,
+                        <strong>JavaScript</strong>, <strong>HTML5</strong>, <strong>CSS3</strong>
+                        e <strong>MySQL</strong>.
+                    </p>
+
+                    <p>
+                        Procuro desenvolver projectos simples, funcionais e bem organizados,
+                        com foco na utilidade prática, na boa apresentação visual e na
+                        resolução de problemas reais.
+                    </p>
+                </div>
+
+                <div class="skills-cards-mini">
+                    <div class="skill-mini-card">
+                        <i class="fab fa-php"></i>
+                        <h3>PHP</h3>
+                        <p>Desenvolvimento web</p>
+                    </div>
+
+                    <div class="skill-mini-card">
+                        <i class="fab fa-java"></i>
+                        <h3>Java</h3>
+                        <p>Sistemas desktop</p>
+                    </div>
+
+                    <div class="skill-mini-card">
+                        <i class="fab fa-js"></i>
+                        <h3>JavaScript</h3>
+                        <p>Interactividade</p>
+                    </div>
+
+                    <div class="skill-mini-card">
+                        <i class="fas fa-database"></i>
+                        <h3>MySQL</h3>
+                        <p>Base de dados</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="aba-formacao" class="aba-painel">
+                <h2><i class="fas fa-graduation-cap"></i> Formação Académica</h2>
+
+                <div class="timeline-educacao">
+                    <div class="timeline-item">
+                        <span class="timeline-data">2012 - 2018</span>
+                        <h3 class="timeline-titulo">Ensino Primário</h3>
+                        <p class="timeline-instituicao">Escola Primária Completa 7 de Abril</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-data">2019 - 2023</span>
+                        <h3 class="timeline-titulo">Ensino Secundário</h3>
+                        <p class="timeline-instituicao">Escola Secundária de Nampula</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-data">2024 - Presente</span>
+                        <h3 class="timeline-titulo">Licenciatura em Tecnologia de Informação</h3>
+                        <p class="timeline-instituicao">Universidade Católica de Moçambique</p>
+                        <p class="timeline-descricao">Actualmente no 3º ano.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="aba-skills" class="aba-painel">
+                <h2><i class="fas fa-code"></i> Habilidades Técnicas</h2>
+
+                <div class="skills-grid">
+                    <div class="skills-categoria">
+                        <h3><i class="fas fa-laptop-code"></i> Linguagens</h3>
+
+                        <div class="skills-lista">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-nome"><i class="fab fa-php"></i> PHP</span>
+                                    <span class="skill-nivel">Intermediário</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progresso" style="width: 75%;"></div></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-nome"><i class="fab fa-java"></i> Java</span>
+                                    <span class="skill-nivel">Intermediário</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progresso" style="width: 70%;"></div></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-nome"><i class="fab fa-js"></i> JavaScript</span>
+                                    <span class="skill-nivel">Intermediário</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progresso" style="width: 65%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-categoria">
+                        <h3><i class="fas fa-globe"></i> Desenvolvimento Web</h3>
+
+                        <div class="skills-lista">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-nome"><i class="fab fa-html5"></i> HTML5</span>
+                                    <span class="skill-nivel">Intermediário</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progresso" style="width: 85%;"></div></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-nome"><i class="fab fa-css3-alt"></i> CSS3</span>
+                                    <span class="skill-nivel">Intermediário</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progresso" style="width: 72%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-categoria">
+                        <h3><i class="fas fa-database"></i> Base de Dados</h3>
+
+                        <div class="skills-lista">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-nome"><i class="fas fa-database"></i> MySQL</span>
+                                    <span class="skill-nivel">Intermediário</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progresso" style="width: 68%;"></div></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-nome"><i class="fas fa-database"></i> SQLite</span>
+                                    <span class="skill-nivel">Básico</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progresso" style="width: 50%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="aba-projetos" class="aba-painel">
+                <h2><i class="fas fa-briefcase"></i> Projectos</h2>
+
+                <div class="projetos-grid">
+                    <div class="projeto-card">
+                        <div class="projeto-icon"><i class="fas fa-car"></i></div>
+                        <h3>Sistema de Gestão e Venda de Carros</h3>
+                        <p>Sistema demo em PHP para cadastro de viaturas, clientes, stock, preços e vendas.</p>
+                        <div class="projeto-tech">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                    </div>
+
+                    <div class="projeto-card">
+                        <div class="projeto-icon"><i class="fas fa-wine-bottle"></i></div>
+                        <h3>Sistema de Gestão - Bottle Store</h3>
+                        <p>Sistema web para controlo de vendas, stock e relatórios.</p>
+                        <div class="projeto-tech">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                    </div>
+
+                    <div class="projeto-card">
+                        <div class="projeto-icon"><i class="fas fa-scissors"></i></div>
+                        <h3>Website Salão Saima'beauty</h3>
+                        <p>Website responsivo com serviços, galeria e formulário de agendamento.</p>
+                        <div class="projeto-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="projeto-card">
+                        <div class="projeto-icon"><i class="fas fa-hospital"></i></div>
+                        <h3>Clínica Vitalis Prime</h3>
+                        <p>Site institucional desenvolvido para a disciplina de Fundamentos de Páginas Web.</p>
+                        <div class="projeto-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="aba-certificados" class="aba-painel">
+                <h2><i class="fas fa-certificate"></i> Certificações</h2>
+
+                <div class="certificados-grid">
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-jornadas-cientificas-ucm-2025.jpg', 'XV Edição das Jornadas Científicas da UCM', 'Universidade Católica de Moçambique • Faculdade de Direito • Orador(a) • 01 de Outubro de 2025')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-jornadas-cientificas-ucm-2025.jpg" alt="Certificado XV Edição das Jornadas Científicas da UCM">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>XV Edição das Jornadas Científicas da UCM</h3>
+                            <p>Orador(a) • Tema: “A Ética como fundamento para consolidação do Estado de Direito em Moçambique” • 01 de Outubro de 2025</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-xiv-jornadas-cientificas-ucm-2024.jpg', 'XIV Jornadas Científicas da UCM', 'Universidade Católica de Moçambique • Orador • 23 de Outubro de 2024')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-xiv-jornadas-cientificas-ucm-2024.jpg" alt="Certificado XIV Jornadas Científicas da UCM">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>XIV Jornadas Científicas da UCM</h3>
+                            <p>Orador • Tema: “Análise jurídico institucional: a dinâmica das ideologias políticas na consolidação democrática em Moçambique” • 23 de Outubro de 2024</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-julgamento-ficticio-2024.jpg', '1ª Edição do Julgamento Fictício Conjunto', 'UCM e Universidade Rovuma • Declarante • 17 de Maio de 2024')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-julgamento-ficticio-2024.jpg" alt="Certificado Julgamento Fictício Conjunto">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>1ª Edição do Julgamento Fictício Conjunto</h3>
+                            <p>Faculdades de Direito da UCM e da Universidade Rovuma • Declarante • 17 de Maio de 2024</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-maratona-inovacao-tecnologica-2025.jpg', '1ª Edição da Maratona de Inovação Tecnológica', 'Faculdade de Direito da UCM • Orador(a) • 15 de Outubro de 2025')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-maratona-inovacao-tecnologica-2025.jpg" alt="Certificado Maratona de Inovação Tecnológica">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>Maratona de Inovação Tecnológica</h3>
+                            <p>Orador(a) • Tema: “Desenvolvimento de um Sistema Web para Arquivo Digital de Trabalhos de Conclusão de Curso” • 15 de Outubro de 2025</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-habilidades-basicas-tic-2022.jpg', 'Módulo de Habilidades Básicas de Uso de TICs', 'INAGE • 03 de Maio a 03 de Junho de 2022')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-habilidades-basicas-tic-2022.jpg" alt="Certificado Habilidades Básicas de Uso de TICs">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>Habilidades Básicas de Uso de TICs</h3>
+                            <p>INAGE • Tecnologias de Informação e Comunicação para o Desenvolvimento • 03 de Junho de 2022</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-direitos-humanos-1.jpg', 'Formação Básica em Direitos Humanos', 'Direito ao Alcance DDS • 21 a 23 de Outubro de 2025')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-direitos-humanos-1.jpg" alt="Certificado Formação Básica em Direitos Humanos">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>Formação Básica em Direitos Humanos</h3>
+                            <p>Direito ao Alcance DDS • 21 a 23 de Outubro de 2025</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-direitos-consumidor.jpg', 'Formação Básica em Direitos do Consumidor', 'Direito ao Alcance DDS • 25 a 27 de Novembro de 2025')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-direitos-consumidor.jpg" alt="Certificado Formação Básica em Direitos do Consumidor">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>Formação Básica em Direitos do Consumidor</h3>
+                            <p>Direito ao Alcance DDS • 25 a 27 de Novembro de 2025</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-dependencia-africa.jpg', 'Fundamentos da Dependência Económica em África', 'Direito ao Alcance DDS • 16 a 18 de Dezembro de 2025')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-dependencia-africa.jpg" alt="Certificado Fundamentos da Dependência Económica em África">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>Fundamentos da Dependência Económica em África</h3>
+                            <p>Direito ao Alcance DDS • 16 a 18 de Dezembro de 2025</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-direitos-humanos-2.jpg', 'Formação Básica em Direitos Humanos', 'Direito ao Alcance DDS • Certificado complementar')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-direitos-humanos-2.jpg" alt="Certificado complementar de Direitos Humanos">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>Formação Básica em Direitos Humanos</h3>
+                            <p>Direito ao Alcance DDS • Certificado complementar</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-jornadas-cientificas-rovuma-2025.jpg', 'V Jornadas Científicas', 'Universidade Rovuma • 15 a 19 de Setembro de 2025 • 30 horas')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-jornadas-cientificas-rovuma-2025.jpg" alt="Certificado V Jornadas Científicas da Universidade Rovuma">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>V Jornadas Científicas</h3>
+                            <p>Universidade Rovuma • Tema: “Impacto do comércio informal na cidade de Nampula” • 15 a 19 de Setembro de 2025</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-lei-vs-tradicao.jpg', 'Lei vs Casamento Tradicional (Tradição)', 'Direito ao Alcance Mz • 23 a 25 de Fevereiro de 2026')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-lei-vs-tradicao.jpg" alt="Certificado Lei vs Casamento Tradicional">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>Lei vs Casamento Tradicional (Tradição)</h3>
+                            <p>Direito ao Alcance Mz • 23 a 25 de Fevereiro de 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="certificado-card" onclick="abrirModal('imagens/certificado-gestao-residuos.jpg', 'Colaborador de Campo em Sensibilização sobre Gestão de Resíduos Sólidos', 'Nampula • 17 a 18 de Janeiro de 2024')">
+                        <div class="certificado-imagem">
+                            <img src="imagens/certificado-gestao-residuos.jpg" alt="Certificado de Gestão de Resíduos Sólidos">
+                            <div class="certificado-overlay">
+                                <span class="ver-certificado"><i class="fas fa-search-plus"></i> Ver completo</span>
+                            </div>
+                        </div>
+                        <div class="certificado-info">
+                            <h3>Gestão de Resíduos Sólidos</h3>
+                            <p>Colaborador de campo • Campanha de sensibilização • Nampula • 17 a 18 de Janeiro de 2024</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Vamos trabalhar juntos</h2>
+        <p>Estou disponível para colaborar em projectos académicos e profissionais.</p>
+        <a href="contato.html" class="cta-btn"><i class="fas fa-comment"></i> Entrar em contacto</a>
+    </section>
+</main>
+
+<div class="modal-certificado" id="modalCertificado">
+    <div class="modal-content">
+        <button class="fechar-modal" onclick="fecharModal()" aria-label="Fechar">&times;</button>
+
+        <div class="modal-imagem-box">
+            <img id="modalImagem" src="" alt="Certificado ampliado">
+        </div>
+
+        <div class="modal-legenda">
+            <h4 id="modalTitulo"></h4>
+            <p id="modalDescricao"></p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Sahil Aktar</h4>
+            <p>Estudante de Tecnologia de Informação na Universidade Católica de Moçambique.</p>
+            <div class="social-footer">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/258833975920"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p><i class="fas fa-envelope"></i> sahilmomadeaktar88@gmail.com</p>
+            <p><i class="fas fa-phone"></i> 87 474 4305 / 83 397 5920</p>
+            <p><i class="fas fa-map-marker-alt"></i> Nampula, Moçambique</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Links Rápidos</h4>
+            <p><a href="index.html"><i class="fas fa-chevron-right"></i> Início</a></p>
+            <p><a href="sobre.html"><i class="fas fa-chevron-right"></i> Sobre Mim</a></p>
+            <p><a href="servicos.html"><i class="fas fa-chevron-right"></i> Serviços</a></p>
+            <p><a href="contato.html"><i class="fas fa-chevron-right"></i> Contacto</a></p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Especialidades</h4>
+            <p><i class="fab fa-php"></i> PHP</p>
+            <p><i class="fab fa-java"></i> Java</p>
+            <p><i class="fab fa-js"></i> JavaScript</p>
+            <p><i class="fas fa-database"></i> MySQL</p>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>© 2026 Sahil Aktar - Todos os direitos reservados | Feito em Nampula, Moçambique</p>
+    </div>
+</footer>
+
+<script>
+function mostrarAba(aba, elemento) {
+    const paineis = document.querySelectorAll('.aba-painel');
+    paineis.forEach(painel => painel.classList.remove('ativo'));
+
+    const painelAtivo = document.getElementById(`aba-${aba}`);
+    if (painelAtivo) {
+        painelAtivo.classList.add('ativo');
+    }
+
+    const botoes = document.querySelectorAll('.aba-btn');
+    botoes.forEach(botao => botao.classList.remove('ativo'));
+    elemento.classList.add('ativo');
+}
+
+function abrirModal(imagemSrc, titulo, descricao) {
+    const modal = document.getElementById('modalCertificado');
+    const modalImg = document.getElementById('modalImagem');
+    const modalTitulo = document.getElementById('modalTitulo');
+    const modalDescricao = document.getElementById('modalDescricao');
+
+    modalImg.src = imagemSrc;
+    modalTitulo.textContent = titulo;
+    modalDescricao.textContent = descricao;
+
+    modal.classList.add('ativo');
+    document.body.style.overflow = 'hidden';
+}
+
+function fecharModal() {
+    const modal = document.getElementById('modalCertificado');
+    const modalImg = document.getElementById('modalImagem');
+
+    modal.classList.remove('ativo');
+    modalImg.src = '';
+    document.body.style.overflow = 'auto';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('modalCertificado');
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+
+    if (modal) {
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                fecharModal();
+            }
+        });
+    }
+
+    if (menuToggle && menu) {
+        menuToggle.addEventListener('click', function () {
+            menu.classList.toggle('active');
+
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.className = menu.classList.contains('active')
+                    ? 'fas fa-times'
+                    : 'fas fa-bars';
+            }
+        });
+    }
+});
+
+window.addEventListener('scroll', function () {
+    const header = document.getElementById('header');
+    if (header) {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+});
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        fecharModal();
+    }
+});
+</script>
+
+</body>
+</html>

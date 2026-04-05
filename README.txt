@@ -1,4 +1,4 @@
-# SITE PESSOAL - TRABALHO PRÁTICO Nº5
+# SITE PESSOAL - Desenvolvimento de uma página web pessoal,para a disciplina Tecnologias de Internet 
 
 ## ESTRUTURA DO PROJETO
 
